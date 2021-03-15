@@ -1,12 +1,12 @@
-(1..30).each do |i|
-  if i % 15 == 0
-    puts "FizzBuzz!"
-  elsif i % 3 == 0
-    puts "Fizz!"
-  elsif i % 5 == 0 
-    puts "Buzz!"
+def fizz_buzz(n)
+  if n % 15 == 0
+    'Fizz Buzz'
+  elsif n % 3 == 0
+    'Fizz'
+  elsif n % 5 == 0 
+    'Buzz'
   else
-    puts i
+    n.to_s
   end
 end
 
