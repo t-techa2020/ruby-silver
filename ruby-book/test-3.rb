@@ -515,14 +515,97 @@ p a[1]
 p a[1..2]
 p a[1...2]
 
+3-107
+case 1
+when 1 then
+	p 1
+end
 
+case "abc"
+when "abc"
+	p 1
+when "abc"
+	p 2
+end
 
+a = 10
+b = case a
+when 1 then
+	1
+else
+	2
+end
+p b
 
+3-108
+case 3
+when 1,2 then; p 1
+when 3,4 then; p 2
+else p 3
+end
 
+3-109
+case 7
+when 1...5 then; p 1
+when 1..10 then; p 2
+end
 
+3-110
+i = 0
+while (0..4) === i do
+	p i
+	i += 1
+end
 
+3-111
+i = 0
+until i == 5 do
+	p i
+	i += 1
+end
 
+3-112
+i = 0
+begin
+	p i
+	i += 1
+end while (1..4) === i
 
+3-113
+i = 0
+p i += 1 while (0..4) === i
+
+3-114
+p /Ruby/
+p %r(Ruby)
+p Regexp.new "Ruby"
+
+3-115
+p /Ruby/ === "I love Ruby"
+
+p case "I love Ruby"
+	when /Ruby/ then; "Ruby!"
+	when /Java/ then; "Java!"
+	end
+
+3-116
+p /Ruby/ =~ "I love Ruby" 
+p "I love Ruby" =~ /Ruby/
+
+3-117
+/bb/ =~ "aabbcc"
+p $` 
+p $&
+p $'
+
+3-118
+reg = /^(aa|bb)c$/
+p reg === "aac"
+p reg === "bbc"
+
+3-119
+reg = /a[bcd]e[fg]h/
+p reg === "abegh"
 
 
 
