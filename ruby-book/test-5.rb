@@ -407,6 +407,340 @@ a.object_id
 b = :abc
 b.object_id
 
+5-71
+a = [1, 2, 3]
+a.class
+
+5-72
+Array[1, 2, 3]
+
+5-73
+Array.new(3, "str")
+
+5-74
+Array.new([1, 2, 3])
+
+5-75
+Array.new(3) {|i| i * 3}
+
+5-76
+a = [1, 2, 3]
+a << 4
+a.concat [5, 6]
+a.insert(3, 9)
+a.object_id
+b = a + [10]
+b.object_id
+a = [1, 2, 3]
+a.unshift(10)
+
+5-77
+a = [1, 2, 3]
+a[1] = 10
+a
+a[1..2] = [11, 12]
+a
+a[8] = 8
+a
+
+5-78
+a = [1, 2, 3]
+a.fill("s")
+a.fill("t", 1..2)
+a
+a.fill(1..2){|index| index}
+
+5-79
+a = [1, 2, 3]
+a.object_id
+a = [1, 2, 3]
+a.object_id
+a.replace([4, 5, 6])
+a.object_id
+
+5-80
+a = [1, 2, 3]
+a[1]
+a.at(1)
+a[1..2]
+a.values_at(1)
+
+5-81
+a = [1, 2, 3]
+a.fetch(4)
+a.fetch 4, "ERROR"
+a.fetch(4){|n| "ERROR #{n}"}
+
+5-82
+a = [1, 2, 3, 4, 5]
+a.first
+a.last
+a.first(3)
+
+5-83
+a = [[1, 2], [3, 4], [5, 6], [7, 8]]
+a.assoc(3)
+
+5-84
+a = [[1, 2], [3, 4], [5, 6], [7, 8]]
+a.rassoc(4)
+
+5-85
+a = [1, 2, 3, 4, 5]
+a.include?(3)
+a.include?(10)
+
+5-86
+a = [1, 2, 3, 4, 5]
+a.index(4)
+a.rindex(4)
+
+5-87
+a = [1, 2, 3, 4, 5]
+a.delete_at(2)
+a
+
+5-88
+a = [1, 2, 3, 4, 5]
+a.delete_if{|n| n % 2 == 0}
+
+5-89
+a = [1, 2, 3, 4, 5]
+a.delete(3)
+a
+a.delete(10)
+a
+
+5-90
+a = [1, 2, 3, 4, 5]
+a.clear
+
+5-91
+a = [1, 2, 3, 4, 5]
+a.slice!(2, 2)
+a
+
+5-92
+a = [1, 2, 3, 4, 5]
+a.shift(2)
+a.shift
+a
+
+5-93
+a = [1, 2, 3, 4, 5]
+a.pop(2)
+a.pop
+a
+
+5-94
+a = [1, 2, 3, 4, 5]
+a - [1, 2]
+a - [1, 3, 5, 7]
+
+5-95
+[1, 2, 3] | [1, 3, 5]
+[1, 2, 3] & [1, 3, 5]
+
+5-96
+[1, 2, 3] == [1, 3, 5]
+[1, 2, 3] <=> [1, 3, 5]
+
+5-97
+[1, 3, 5, 7, 9].each{|n| puts n * 2}
+[1, 3, 5, 7, 9].each_index{|n| puts n * 2}
+
+5-98
+[1, 2, 3].cycle{|n| puts n}
+
+5-99
+[1, 2, 3].join(", ")
+
+5-100
+[1, 2, 3].length
+[].length
+[].empty?
+
+5-101
+a = [1, 3, 5, 2, 4, 6]
+a.sort
+a
+a.sort!
+a
+
+5-102
+[1, 3, 5, 2, 4, 6].sort{|a, b| a <=> b}
+[1, 3, 5, 2, 4, 6].sort{|a, b| b <=> a}
+
+5-103
+[1, 1, 2, 3, 3].uniq
+
+5-104
+[1, nil, 2, nil, 3].compact
+
+5-105
+[1, 2, 3, 4, 5].reverse
+
+5-106
+[[[1, 2], 3], [[4, 5], 6]].flatten
+[[[1, 2], 3], [[4, 5], 6]].flatten(1)
+
+5-107
+[1, 2, 3, 4, 5].map{|n| n * 2}
+
+5-108
+[1, 2, 3, 4, 5].shuffle
+
+5-109
+[1, 2].product(["a", "b", "c"])
+
+5-110
+[1, 2].zip(["a", "b"])
+[1, 2].zip(["a", "b"], ["x", "y"])
+
+5-111
+[1, 2] * 4
+
+5-112
+["ルビー"].pack('m')
+
+5-113
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.class
+
+5-114
+Hash["apple", "fruit", "coffee", "drink"]
+
+5-115
+a = Hash.new
+a["apple"]
+a = Hash.new("NONE")
+a["apple"]
+
+5-116
+a = Hash.new{|hash, key| hash[key] = nil}
+a["apple"]
+a = Hash.new {|hash, key| hash[key] = "NONE"}
+a["apple"]
+
+5-117
+a = Hash.new("NONE")
+a.default
+a["apple"]
+a.default = "Not exists"
+a["apple"]
+
+5-118
+a = {"apple" => "fruit", "coffee" => "drink"}
+a["apple"]
+
+5-119
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.keys
+a.values
+
+5-120
+a = {1 => "a", 2 => "b", 3 => "c", 4 => "d"}
+a.values_at(1, 3)
+
+5-121
+a = {1 => "a", 2 => "b", 3 => "c", 4 => "d"}
+a.fetch(5, "NONE")
+a.fetch(5){|key| key % 2 == 0}
+
+5-122
+a = {1 => "a", 2 => "b", 3 => "c", 4 => "d"}
+a.select{|key, value| key % 2 == 0}
+a.find_all{|key, value| key % 2 == 0}
+
+5-123
+a = {"apple" => "fruit", "coffee" => "drink"}
+a["apple"] = "red"
+a
+a["orange"] = "orange"
+a
+
+5-124
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.delete("apple")
+a
+
+5-125
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.reject{|key, value| value == "drink"}
+a
+
+5-126
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.reject!{|key, value| value == "drink"}
+a
+
+5-127
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.object_id
+a.replace({"orange" => "fruit", "tea" => "drink"})
+a.object_id
+
+5-128
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.shift
+a
+
+5-129
+a = {"apple" => "foods", "coffee" => "drink"}
+a.merge({"orange" => "fruit", "tea" => "drink", "apple" => "fruit"})
+a
+a.merge({"orange" => "fruit", "tea" => "drink"}){|key, self_val, other_val| self_val}
+
+5-130
+a = {"apple" => "foods", "coffee" => "drink"}
+a.merge!({"orange" => "fruit", "tea" => "drink", "apple" => "fruit"})
+a
+
+5-131
+a = {"apple" => "foods", "coffee" => "drink"}
+a.invert
+{"orange" => "fruit", "coffee" => "drink", "apple" => "fruit", "tea" => "drink"}.invert
+
+5-132
+a = {"apple" => "foods", "coffee" => "drink"}
+a.clear
+
+5-133
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.size
+a.empty?
+
+5-134
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.key?("apple")
+a.key?("orange")
+
+5-135
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.value?("fruit")
+a.key?("foods")
+
+5-136
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.each{|key, value| puts "#{key} => #{value}\n"}
+
+5-137
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.each_key{|key| puts "key: #{key}\n"}
+a.each_value{|value| puts "value: #{value}\n"}
+
+5-138
+a = {4 => "a", 3 => "b", 2 => "c", 1 => "d"}
+a.sort
+a.sort{|a, b| a[1] <=> b[1]}
+
+5-139
+a = {4 => "a", 3 => "b", 2 => "c", 1 => "d"}
+a.to_a
+
+
+
+
 
 
 
