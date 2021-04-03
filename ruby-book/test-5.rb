@@ -738,15 +738,483 @@ a.sort{|a, b| a[1] <=> b[1]}
 a = {4 => "a", 3 => "b", 2 => "c", 1 => "d"}
 a.to_a
 
+5-140
+a = :foo
+a.object_id
+b = :foo
+b.object_id
+
+5-141
+:foo
+Symbol.all_symbols
+
+5-142
+:foo.to_s
+
+5-143
+dir = Dir.open("/usr/local/bin")
+dir.each{|file| puts file}
+
+5-144
+Dir.open("/usr/local/bin"){|dir| puts dir.path}
+
+5-145
+Dir.pwd
+
+5-146
+Dir.chdir("/usr/local")
+Dir.pwd
+Dir.chdir("/usr/local/bin"){|dir| puts Dir.pwd}
+Dir.pwd
+
+5-147
+Dir.mkdir("/tmp/foo")
+Dir.mkdir("/tmp/bar", 0755)
+
+5-148
+Dir.mkdir("/tmp/foo")
+Dir.rmdir("/tmp/foo")
+
+5-149
+file = File.open('README.md')
+file.read
+file.close
+
+5-150
+File.open('README.md') {|file| file.read}
+
+5-151
+f = File.open('shift_jis.txt', 'r:shift_jis:utf-8')
+
+5-152
+f = File.open('shift_jis.txt', 'w+:shift_jis:euc-jp')
+f.write 'ルビー'.encode('euc-jp')
+f.rewind
+f.read(4)
+
+5-153
+File.open('new-file', "w") {|file| file.write "This is new file."}
+
+5-154
+File.mtime('README.md')
+File.open('README.md') {|file| file.mtime}
+
+5-155
+File.directory?('/usr/local')
+File.directory?('/usr/local/bin/zsh')
+
+5-156
+File.chmod(0644, 'README.md')
+File.chown(501, 20, 'README.md')
 
 
+5-157
+File.utime(Time.now, Time.now, 'README.md')
 
+5-158
+File.expand_path('README.md')
 
+5-159
+File.delete('README.md')
 
+5-160
+File.truncate('README.md', 0)
 
+5-161
+File.rename('README.md', 'READ_ME.md')
 
+5-162
+File.open('README.md', "w") {|file| file.flock(File::LOCK_EX)}
 
+5-163
+io = open('README.md')
 
+5-164
+io = open('README.md', 'w+:shift_jis:euc-jp')
 
+5-165
+io = open('| ls -la')
 
+5-166
+io = open('| ls -la /tmp/bar')
 
+5-167
+STDOUT.write('There is new technology.')
+
+5-168
+open('README.md'){|io| puts io.read}
+
+5-169
+IO.popen('grep -i ruby' 'r+') do |io|
+	io.write('This is Ruby Program.')
+	io.close_writ
+	puts io.read
+end
+
+5-170
+IO.read("README.md", 5)
+IO.read("README.md", 5).encoding
+
+5-171
+IO.foreach("INSTALL"){|line| puts line}
+
+5-172
+open("INSTALL").readlines
+
+5-173
+io = open("INSTALL")
+io.gets
+io.gets
+
+5-174
+io = open("INSTALL")
+io.each_byte{|i| puts i}
+
+5-175
+io = open("INSTALL")
+io.getbyte
+io.getbyte
+
+5-176
+io = open("INSTALL")
+io.each_char{|c| puts c}
+
+5-177
+io = open("INSTALL")
+io.getc
+io.getc
+
+5-178
+STDOUT.write('There is new technology')
+
+5-179
+STDOUT.puts('Abcdefg', 'Hijklmn')
+
+5-180
+$, = "\n"
+STDOUT.print('This is first line.', 'This id second line.')
+
+5-181
+STDOUT.printf('%010d', 123456)
+
+5-182
+STDOUT.putc('a')
+STDOUT.putc('0x3042')
+
+5-183
+STDOUT << "This" << " " << "is" << " " << "README" << "."
+
+5-184
+io = open('README.md', 'w+')
+io.write('This is new README')
+'cat README.md'
+io.flush
+'cat README.md'
+
+5-185
+io.stat
+
+5-186
+io = open('README.md', 'r+')
+io.read
+io.eof?
+io.close
+io.closed?
+
+5-187
+io = open('sample.txt')
+io.read
+io.rewind
+io.gets
+io.lineno
+io.lineno = 10
+io.gets
+io.lineno
+
+5-188
+io = open('sample.txt')
+io.sync
+
+5-189
+io = open('sample.txt')
+io.read
+io.read
+io.rewind
+io.read
+
+5-190
+io = open('sample.txt')
+io.pos
+io.pos = 15
+io.read
+
+5-191
+io = open('sample.txt')
+io.seek(10)
+io.read
+io.seek(-10, IO::SEEK_END)
+io.read
+
+5-192
+Time.now
+
+5-193
+Time.at(1234567890)
+Time.at(1234567890, 1234567890)
+
+5-194
+Time.mktime(2017)
+Time.mktime(2017, 7, 7)
+
+5-195
+Time.mktime(0, 0, 0, 7, 7, 2017, 4, 188, false, "JST")
+
+5-196
+Time.gm(2017)
+Time.gm(2017, 7, 7)
+
+5-197
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t.year
+t.mday
+t.sec
+
+5-198
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t.wday
+t.yday
+
+5-199
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t.dst?
+t.gmt?
+
+5-200
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t.gmtoff
+t.gmtoff / 3600
+
+5-201
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t.localtime
+t.gmtime
+
+5-202
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t.object_id
+t1 = t.getlocal
+t1.object_id
+
+5-203
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t + 60 * 60 * 3
+t - 60 * 60 * 3
+
+5-204
+t1 = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t2 = Time.mktime(2017, 2, 3, 4, 5, 6, 7)
+t2 - t1
+
+5-205
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t.to_i
+t.to_f
+
+5-206
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t.to_a
+
+5-207
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t.to_s
+
+5-208
+t = Time.mktime(2017, 1, 2, 3, 4, 5, 6)
+t.strftime("%Y年%m月%d日 %H時%M分%S秒")
+
+5-209
+a = /abcdefg/i
+a.class
+
+5-210
+a = Regexp.new("abcdefg", Regexp::MULTILINE | Regexp::IGNORECASE)
+
+5-211
+a = Regexp.new("abc")
+a.match("abcdefg")
+
+5-212
+a = Regexp.new("abc")
+a =~ "abcdefg"
+"abcdefg" =~ a
+
+5-213
+a = Regexp.new("abc")
+a === "abcdefg"
+
+5-214
+$_ = "abcdefg"
+a = Regexp.new("abc")
+~ a
+
+5-215
+Regexp.escape("array.push(hash[key])")
+
+5-216
+/abcdefg/ =~ "abcdefghijklmnopqrstuvwxyz"
+Regexp.last_match
+$~
+
+5-217
+/(abc)d(efg)/ =~ "abcdefghijklmnopqrstuvwxyz"
+Regexp.last_match(0)
+$&
+Regexp.last_match(1)
+$1
+
+5-218
+a = Regexp.new("abc")
+b = Regexp.new("ABC")
+c = Regexp.union(a, b)
+c =~ "abc"
+Regexp.last_match
+
+5-219
+a = Regexp.new("abcdefg", Regexp::MULTILINE | Regexp::IGNORECASE)
+a.options
+a.options & Regexp::IGNORECASE
+a.options & Regexp::EXTENDED
+
+5-220
+a = Regexp.new("abcdefg")
+a.casefold?
+a = Regexp.new("abcdefg", Regexp::MULTILINE | Regexp::IGNORECASE)
+a.casefold?
+
+5-221
+a = Regexp.new("ルビー")
+a.encoding
+a = Regexp.new("ルビー".encode("EUC-JP"))
+a.encoding
+
+5-222
+a = Regexp.new("abcdefg", Regexp::MULTILINE | Regexp::IGNORECASE)
+a.source
+a.to_s
+a.inspect
+
+5-258
+[1, 2, 3, 4, 5].map{|i| i ** 2}
+
+5-259
+[:a, :b, :c, :d, :e].each_with_index{|v, i| puts "#{v} => #{i}"}
+
+5-260
+[1, 2, 3, 4, 5].inject(0){|result, v| result + v ** 2}
+
+5-261
+(1..10).each_cons(3) {|items| p items}
+(1..10).each_slice(3) {|items| p items}
+
+5-262
+[1, 2, 3, 4, 5].reverse_each {|i| puts i}
+
+5-263
+[1, nil, 3].all?
+[1, nil, 3].any?
+[].all?
+[].any?
+
+5-264
+[1, 2, 3, 4, 5].include?(3)
+
+5-265
+[1, 2, 3, 4, 5].find {|i| i % 2 == 0}
+[1, 2, 3, 4, 5].find_index {|i| i % 2 == 0}
+
+5-266
+[1, 2, 3, 4, 5].select {|i| i % 2 == 0}
+
+5-267
+["aaa", "b", "cc"].sort{|a, b| a.length <=> b.length}
+["aaa", "b", "cc"].sort_by{|a| a.length}
+
+5-268
+(1..10).map{|v| v % 5 + v}
+(1..10).max{|a, b| (a % 5 + a) <=> (b % 5 + b)}
+(1..10).max_by{|v| v % 5 + v}
+
+5-269
+[1, 2, 3, 4, 5].count
+
+5-270
+[:a, :b, :c].cycle{|v| p v}
+
+5-271
+(1..10).group_by{|v| v % 2}
+
+5-272
+[:a, :b, :c].zip([1, 2, 3],["a", "b", "c"])
+
+5-273
+[:a, :b, :c].take(2)
+[:a, :b, :c].first
+
+5-274
+[:a, :b, :c, :d, :e].take_while {|e| e != :d}
+
+5-275
+[:a, :b, :c, :d, :e].drop(3)
+
+5-276
+[:a, :b, :c, :d, :e].drop_while{|e| e != :c}
+
+5-277
+[1, 2, 3, 4, 5].select{|e| e % 2 == 0}
+[1, 2, 3, 4, 5].reject{|e| e % 2 == 0}
+
+5-278
+a = [1, 2, 3, 4, 5].lazy.select{|e| e % 2 == 0}
+b = a.map{|e| e * 2}
+c = a.take(3)
+c.to_a
+
+5-279
+class Sample
+	def initialize(value)
+		@value = value
+	end
+
+	def value
+		@value
+	end
+
+	def <=> (other)
+		other.value <=> self.value
+	end
+end
+
+5-280
+class Sample
+	include Comparable
+
+	def initialize(value)
+		@value = value
+	end
+
+	def value
+		@value
+	end
+
+	def <=> (other)
+		other.value <=> self.value
+	end
+end
+
+a = Sample.new(10)
+b = Sample.new(5)
+a < b
+a <= b
+a == b
+a > b
+a >= b
