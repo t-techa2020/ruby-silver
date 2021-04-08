@@ -169,7 +169,75 @@
 # 33
 # p "find!find!find!find!find!find".index("!",5)
 
+# 34
+# x = "Hello, World.\n"
+# x.chop
+# x.chop
+# x.chomp
+# p x
 
+# 35
+# a="abcdefghijk"
+# a[1,3] = "x"
+# print a,"\n"
+
+# 36
+# p "hogepiyohogehoge".slice(/o../)
+
+# 37
+# puts "0123456789-".delete("^13-56-")
+
+# 38
+
+# 39
+# p "abc def 123 ghi 456".scan(/\d+/).length
+
+# 40
+# p 65.chr
+# p "A".ord
+
+# 41
+# p "HogeHOGEhoge"[/[A-Z][^A-Z]+/]
+
+# 42
+# h = {"a": 1, "b": 2, "c": 3}
+# p h
+
+# 43
+# h = {1 => "Hoge", 2 => "Piyo", 3 => "fuga"}
+
+# 44
+# h = {1 => "Hoge", 2 => "Piyo", 3 => "fuga"}
+# h.reject {|x, y| x < 2}
+# p h
+
+# 45
+# a = {"Foo" => "Hoge", "Bar" => "Piyo", "Baz" => "Fuga"}
+# b = {"Foo" => "hoge", "Bar" => "piyo", "Baz" => "fuga"}
+
+# p a.update(b).sort{|a, b| a[1] <=> b[1]}
+
+# 46
+
+# 47
+# open("test.txt","r+") do |f|
+# 	data = f.read.chomp
+# 	data.reverse!
+# 	f.rewind
+# 	f.write data
+# end
+
+# 48
+# puts File.join("/","user","bin")
+
+# 49
+# t = Time.local(2000,1,1)
+# print(t.strftime("%Y/%m/%d"))
+
+# 50
+# t1 = Time.gm(2010, 1, 1, 0, 0)
+# t2 = Time.gm(2010, 1, 1, 0, 1)
+# p t2 - t1
 
 
 
