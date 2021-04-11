@@ -1,10 +1,10 @@
-1
+1(○)
 coding: us-ascii
 encoding: us-ascii
 -*- charset: us-ascii -*-
 CODING: US-ASCII
 
-2
+2(○)
 x = 0
 def hoge
 	(1...5).each do |i|
@@ -14,7 +14,7 @@ def hoge
 end
 hoge
 
-3
+3(○)
 begin
 	puts 1+"2"
 rescue
@@ -25,32 +25,32 @@ ensure
 	puts "Ensure."
 end
 
-4
+4(○)
 puts "90"
 puts '90'
 puts 0x90
 puts 090
 
-5
+5(○)
 x = 10
 y = x < 10 ? "A" : "B"
 puts y
 
-6
+6(○)
 MAX=10
 print MAX
 MAX=100
 print MAX
 
-7
+7(○)
 def foo(*a)
 	p a
 end
 foo(1,2,3)
 
-8
+8(×)
 
-9
+9(○)
 class Hoge
 	attr_reader :message
 	def initialize
@@ -67,14 +67,14 @@ end
 
 puts Piyo.new.message
 
-10
+10(○)
 def area r
 	return r * r * PI
 end
 
-11
+11(×)
 
-12
+12(○)
 s = "Hello"
 def s.greet
 	puts "Hi!"
@@ -86,7 +86,7 @@ class String
 end
 s.greet
 
-13
+13(×)
 class Employee
 	attr_reader :id
 	attr_accessor :name
@@ -111,31 +111,39 @@ employees.each do |employee|
 	puts employee
 end
 
-14
+14(○)
 a = [1, 2, 3, 4]
 b = [1, 3, 5, 7]
 
 c = a & b
 c.each {|i| print i, " "}
 
-15
+15(○)
 a = [1, 2, 3, 4]
 a[0..-2].each do |i| print i," " end
 a[0,3].each do |i| print i," " end
 
-16
+16(×)
+p [1, 2, 3, 4, 5].find {|i| i % 2 == 0} # 2
+p [1, 2, 3, 4, 5].find_all {|i| i % 2 == 0} # [2, 4]
+p [1, 2, 3, 4, 5].select {|i| i % 2 == 0} # [2, 4]
+p [1, 2, 3, 4, 5].map {|i| i ** 2} # [1, 4, 9, 16, 25]
+p [1, 2, 3, 4, 5].collect {|i| i ** 2} # [1, 4, 9, 16, 25]
+p [:a, :b, :c].first # :a
+a = [1, 2, 3, ]
+p a.concat [4, 5] # [1, 2, 3, 4, 5]
 
-17
+17(○)
 a1 = %w(a b)
 a2 = %w(x y)
 a3 = a1.zip(a2)
 p a3.first
 
-18
+18(○)
 a = [1, 2, 3, 4, 5]
 p a.slice(1, 3)
 
-19
+19(×)
 a = 'abc'
 b = 'abc'
 
@@ -143,13 +151,13 @@ print a.eql? b
 print a.equal? b
 print a == b
 
-20
+20(○)
 puts 5 + "Hello"
 puts "Hello" + 5
 puts "Hello" * 5
 puts 5 * "Hello"
 
-21
+21(○)
 s = <<"EOB"
 Hello,
 Ruby
@@ -158,7 +166,7 @@ EOB
 "EOB"
 p s
 
-22
+22(○)
 s1 = "Hoge"
 s2 = "Fuga"
 s1.concat(s2)
@@ -167,34 +175,56 @@ s1.chomp
 s1+s2
 puts s1
 
-23
+23(○)
 s = "123456789"
 p s[1, 4]
 
-24
+24(×)
 member = [10, "Tanaka"]
 print "ID:%2d Name:%s" % member
 
-25
+25(○)
+{}
+a = {"apple" => "fruit", "coffee" => "drink"}
+p a.invert # {"fruit"=>"apple", "drink"=>"coffee"}
+p a.has_key?("apple")
+p a.include?("apple")
+p a.key?("apple")
+p a.member?("apple")
 
-26
+26(×)
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.delete("apple")
+p a # {"coffee"=>"drink"}
 
-27
+a = {1 => "a", 2 => "b", 3 => "c", 4 => "d"}
+p a.fetch(5, "NONE") # "NONE"
+p a.fetch(4) # "d"
+
+a = {"apple" => "fruit", "coffee" => "drink"}
+a.clear
+p a # {}
+
+27(○)
 h = {a: 1, b: 2, c: 3}
+p h
+h = {a = 1, b = 2, c = 3}
 p h
 h = Hash[:a, 1, :b, 2, :c, 3]
 p h
+h = {:a 1, :b 2, :c 3}
+p h
 
-28
+28(×)
 File.open{"data"} do |io|
-	while not to.eof?
-		print io.read(1)
-		io.seek(0, IO::SEEK_SET)
+	while not to.eof? # ファイルの終端に到達していないか？
+		print io.read(1)　# 1文字(a)を読み取る 
+		io.seek(0, IO::SEEK_SET) # ファイルポインタを先頭に移動
 	end
 end
 
-29
+29(×)
 t = Time.gm(1970, 1, 1)
 puts t.strftime("%Y/%m/%d")
 
-30
+30(○)
