@@ -149,11 +149,195 @@ end
 
 p container.length
 
+21(○)
+arr = [1,2].zip([3,4])
+p arr
 
+22(○)
+s = <<'EOF'
+Hello,
+Ruby
+EOF
 
+p s
 
+23(○)
+X = 10
+Y = X < 10 ? "C" : "D"
+puts Y
 
+24(○)
 
+25(○)
+hoge = 0
+def hoge
+	x = 0
+	5.times do |i|
+		x += 1
+	end
+	x
+end
+puts hoge
+
+26(×)
+p "Hello" % 5
+
+27(×)
+a = [1]
+a[5] = 10
+a.compact
+p a
+
+28(×)
+def hoge(n)
+	unless n != 3
+		"hello"
+	elsif n == 5
+		"world"
+	end
+end
+
+str = ''
+str.concat hoge(3)
+str.concat hoge(5)
+
+puts str
+
+29(○)
+a = [1]
+a[5] = 10
+a.compact!
+p a
+
+30(×)
+def hoge
+	X = 10
+	Y = X < 10 ? "C" : "D"
+	puts Y
+end
+hoge
+
+31(○)
+def foo(n)
+	n ** n
+end
+
+puts foo(2) * 2
+
+32(○)
+str = "abcdefghijk"
+p str[2...4]
+
+33(○)
+begin
+	1 / 0
+rescue
+	raise
+end
+
+34(○)
+p "Hello" * 5
+
+35(×)
+X = 10
+X = X < 10 ? "C" : "D"
+puts X
+
+36(○)
+str = "abcdefghijk"
+p str[2,4]
+
+37(○)
+a1 = "abc"
+a2 = 'abc'
+
+print a1.equal? a2
+print a1.eql? a2
+
+38(○)
+a = [1,2,3,4]
+p a[2,1]
+
+39(○)
+s = ["one", "two", "three"]
+s.shift
+s.shift
+s.unshift
+s.push "four"
+p s
+
+40(○)
+s = <<-EOF
+			Hello,
+			Ruby
+			EOF
+
+p s
+
+41(×)
+def hoge
+	x = 0
+	(1...5).each do |i|
+		x += 1
+	end
+	x
+end
+puts hoge
+
+42(×)
+a = "Ruby"
+b = " on Rails"
+a.append b
+a.reverse
+p a.index("R", 1)
+
+43(○)
+puts '10'.oct
+puts "110"
+puts "110".to_i(2)
+
+44(×)
+require 'Date'
+p Date.today.strftime("%F")
+
+45(○)
+a1 = [1,2,3]
+a2 = [4,2,3]
+
+p a1 | a2
+
+46(○)
+array = Array.new(3){"Apple"}
+array[0].upcase!
+
+p array
+
+47(○)
+
+48(×)
+hash = {price: 100, order_code: 200, order_date: "2018/09/20", tax: 0.8}
+
+p hash.values_at(:price, :tax)
+
+49(×)
+require 'Date'
+p Date.today.strftime("%Y-%m-%d")
+
+50
+$val = 0
+
+class Count
+	def self.up
+		$val = $val + 1
+		$val == 3 ? true : false
+	end
+end
+
+[*1..10].select do
+	Count.up
+end
+
+p $val
 
 
 
