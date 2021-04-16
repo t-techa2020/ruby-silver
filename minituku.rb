@@ -1,19 +1,36 @@
-1-1
+1-1(○)
 n = 10
 n.times do |i|
 	puts i + n
 end
 
-1-2
+def bar
+	puts n
+end
+n = 10
+bar(n)
 
-1-3(○)
+def foo(x)
+	puts x
+end
+foo()
 
-1-4
+10.times do |i|
+	n = i
+	puts n
+end
+puts n
+
+1-2(○)
+
+1-3(×)
+
+1-4(○)
 a = [1, 2, 3]
 b = [4, 5, 6]
 p a.zip(b).first
 
-1-5
+1-5(○)
 s = 0xBacFace
 s += 1
 puts s
@@ -21,21 +38,30 @@ puts s
 1-6(○)
 
 1-7(○)
+p [1, 2, 3, 4].zip([10, 10, 10, 10])
+p (10..40).to_a
 p (1...5).to_a.map{|i| i * 10}
+p [1,2,3,4].select{|i| i * 10}
 
-1-8
+1-8(×)
 
 1-9(○)
+10.+("10")
+1..10.to_s
 10.*(0xFace)
+Time.now.strftime(1999,12,11)
 
 1-10(○)
 p "abcdefg"[2, 3]
+p ["a", "b", "c", "d", "e"][0..2].join
+p "abcdefg" - "ab" - "fg"
+p "abcdefg"[2,3]
 
 2-1(○)
 str = "ABQUOFNI".slice(3, 2)
 puts(str)
 
-2-2
+2-2(×)
 puts ("abcdefghijklmnopqrstuvwxyz".scan(/.{3}/))
 
 2-3(○)
@@ -44,20 +70,20 @@ p /[^P|p]rogramming/ =~ "Arogramming"
 2-4(○)
 p "sheep,hummingbird,rabbit".index(/,/, 10)
 
-2-5
+2-5(○)
 p ["foo\r\n", "bar\n", "baz\n\r"].map {|i| i.chomp}
 
 2-6(○)
 p((0...10).find {|i| i > 10})
 
-2-7(○)
+2-7(×)
 p "abcde-fghijklmno-pqrstuv-wxyz".delete("f-u-")
 
 2-8(○)
 str = "Ruby"
 p str[0..-2].swapcase
 
-2-9
+2-9(○)
 text = <<-END
 	foo
 	bar
@@ -65,7 +91,7 @@ text = <<-END
 	END
 p text
 
-2-10
+2-10(×)
 str = "foobarbaz\r\n\r\n"
 p str.chomp('').chop.chop.reverse
 
@@ -77,7 +103,7 @@ p ary[1...-1]
 3-2(×)
 p [{:foo => 1}, ["bar", 2]].map{|i| i.to_s}.sort
 
-3-3(×)
+3-3(○)
 ary = ["foo", "bar", "baz"]
 ary.unshift(ary.first)
 p ary
@@ -94,7 +120,7 @@ p ary.select {|i| i % 3 == 0}
 3-6(○)
 p 0xA + 022 + 0b1010
 
-3-7(×)
+3-7(○)
 ary = [1, 2, 3, 4, 5, 6]
 p ary.inject {|a, b| a + b}
 
@@ -106,6 +132,10 @@ p ary1.concat(ary2)
 3-9(×)
 hash = {:foo => 1, :bar => 2}
 p hash.delete(:foo)
+p hash
+p hash.find {|i| i.member?(:foo)}
+p hash.reject {|key, value| key == :foo}
+p hash.dup
 
 3-10(○)
 p ({:foo => [1, 2, 3, 4, 5].length})
@@ -133,7 +163,7 @@ foo
 4-3(×)
 a = "foo"
 b = a
-b.slice(0, 1)
+b.slice!(0, 1)
 print(a, b)
 
 4-4(○)
@@ -150,7 +180,7 @@ end
 bar = Bar.new("bar")
 puts(bar.foo)
 
-4-5(×)
+4-5(○)
 o1 = Object.new
 o2 = Object.new
 
@@ -227,7 +257,7 @@ end
 
 Bar.foo
 
-5-1(×)
+5-1(○)
 File.open("program.rb", "w") do |f|
 	f.puts("=begin\n A Ruby program \n=end")
 end
@@ -313,7 +343,7 @@ puts(bar)
 
 6-2(×)
 
-6-3(×)
+6-3(○)
 ary = []
 10.times do |i|
 	i.even? ? (i % 3 == 0) ? ary << i : next : next
@@ -328,13 +358,13 @@ p foo.succ
 mark = '*'
 5.downto(1) {|i| print((mark * i) + "\n")}
 
-6-6(×)
+6-6(○)
 (1..31).each_slice(7) do |i|
 	i.each {|n| printf("%2d%s", n, "\s")}
 	print("\n")
 end
 
-6-7(×)
+6-7(○)
 container = [1]
 ary = (2..10).to_a
 tmp = ary.shift
@@ -357,7 +387,7 @@ while min > 0
 end
 p max
 
-6-9(×)
+6-9(○)
 def fib(count=9)
 	count -= 2
 	container = [0, 1]
