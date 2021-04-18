@@ -339,15 +339,114 @@ end
 
 p $val
 
+## 1
+s = <<'EOF'
+Hello,
+Ruby
+EOF
+'EOF'
 
+p s
 
+## 2
+require 'Date'
+d = Date.new(2015, 1, 5)
+puts d.strftime("%x")
 
+## 3
+$val = 0
 
+class Count
+	def self.up
+		$val = $val + 1
+		$val == 3 ? true : false
+	end
+end
 
+[*1..10].any? do
+	Count.up
+end
 
+p $val
 
+## 4
+module M
+  CONST = "Hello, world"
 
+  class C
+    def awesome_method
+      CONST
+    end
+  end
+end
 
+p M::C.new.awesome_method
+
+class C
+end
+
+module M
+  CONST = "Hello, world"
+
+  C.class_eval do
+    def awesome_method
+      CONST
+    end
+  end
+end
+
+p C.new.awesome_method
+
+class C
+  CONST = "Hello, world"
+end
+
+module M
+  C.class_eval(<<-CODE)
+    def awesome_method
+      CONST
+    end
+  CODE
+end
+
+p C.new.awesome_method
+
+class C
+  CONST = "Hello, world"
+end
+
+module M
+  C.class_eval do
+    def awesome_method
+      CONST
+    end
+  end
+end
+
+p C.new.awesome_method
+
+## 5
+while not DATA.eof?
+	lines = DATA.readlines
+	lines.map(&:chomp!)
+	lines.reverse
+	p lines
+end
+
+## 6
+class C
+  class << C
+    def hoge
+      'Hi'
+    end
+  end
+
+  def hoge
+    'Goodbye'
+  end
+end
+
+p C.new.hoge
 
 
 
