@@ -147,7 +147,11 @@ a = ["a", "b", "c"]
 b = [1, 2, 3]
 a.zip(b).each {|x| p x}
 a.zip(b) {|x| p x}
+p a.zip(b)
+p [a, b].zip
 [a, b].zip{|x, y| p [x, y]}
+p [a, b]
+p [a, b].transpose
 [a, b].transpose.each{|x, y| p [x, y]}
 
 30(○)
@@ -219,6 +223,7 @@ a = {"Foo" => "Hoge", "Bar" => "Piyo", "Baz" => "Fuga"}
 b = {"Foo" => "hoge", "Bar" => "piyo", "Baz" => "fuga"}
 
 p a.update(b).sort{|a, b| a[1] <=> b[1]}
+p a.update(b).sort{|a, b| a[0] <=> b[0]}
 
 46(○)
 
