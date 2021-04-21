@@ -86,11 +86,11 @@ end
 p1 = hoge
 p2 = hoge(2)
 
-p1.call
-p1.call
-p1.call
-p2.call
-p2.call
+p p1.call
+p p1.call
+p p1.call
+p p2.call
+p p2.call
 
 p p2.call
 
@@ -107,13 +107,7 @@ end
 
 bar (10)
 
-def bar(*n1, n2)
-  puts n1
-  puts n2
-end
-
-bar 5, 6, 7, 8
-
+def bs
 def bar(*n1, n2, *n3)
   puts n1
   puts n2
@@ -126,7 +120,7 @@ def foo(n)
 	n ** n
 end
 
-puts foo (2) * 2
+puts foo(2) * 2
 
 18(○)
 (10..15).to_a.map.with_index(1) do |elem, i|
@@ -448,7 +442,7 @@ end
 
 p C.new.hoge
 
-
+p "Hello%d" % 5
 
 
 
