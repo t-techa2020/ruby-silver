@@ -299,6 +299,9 @@ a1 = [1,2,3]
 a2 = [4,2,3]
 
 p a1 | a2
+p a1 & a2
+p a1 + a2
+p a1 - a2
 
 46(○)
 array = Array.new(3){"Apple"}
