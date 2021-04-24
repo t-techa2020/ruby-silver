@@ -47,7 +47,7 @@ p arr
 
 9(×)
 p [1, 2, 3].inject{|x, y| x + y ** 2} rescue p $!
-p [1, 2, 3].inject(0){|x, y| x + y ** 2} rescue p $!
+p [1, 2, 3].inject(1){|x, y| x + y ** 2} rescue p $!
 p [1, 2, 3].inject([]){|x, y| x << y ** 2} rescue p $!
 p [1, 2, 3].inject do|x, y| x + y ** 2 end rescue p $!
 
@@ -336,116 +336,173 @@ end
 
 p $val
 
-## 1
-s = <<'EOF'
-Hello,
-Ruby
-EOF
-'EOF'
+========================================
 
+5(×)
+arr = (1..30).to_a
+container = []
+
+arr.each_slice(7) do |i|
+	container << i
+end
+
+p container.length
+
+6(×)
+raise ['Error Message']
+
+11(×)
+str = "1;2:3;4"
+p str.split(";|:")
+
+15(×)
+p [1,2,3,4].map do |e| e * e end
+
+22(×)
+X = 10
+Y = X < 10 ? "C": "D"
+puts Y
+
+27(×)
+v1 = 1 - 1 == 0
+v2 = v1 || raise(RuntimeError)
+p v2
+puts v2 && false
+
+28(×)
+File.open(testfile.txt, 'a+') do |f|
+	f.write("recode 1\n")
+	f.seek(0, IO::SEEK_SET)
+	f.write("recode 2\n")
+end
+
+29(○)
+arr = [["apple"], ["banana"], ["orange"]].flatten
+arr.each do |i|
+	puts i
+end
+
+32(×)
+hoge = *"a"
+puts hoge.class
+
+33(×)
+(1..10).each
+.reverse_each
+.each do |i|
+	puts i
+end
+
+(1..10).each \
+.reverse_each \
+.each do |i|
+	puts i
+end
+
+40(×)
+s = <<-EOF
+    Hello,
+    Ruby
+    EOF
 p s
 
-## 2
-require 'Date'
-d = Date.new(2015, 1, 5)
-puts d.strftime("%x")
+47(×)
+str = <<EOS
+よりニッチに。よりユニークに。
+  IT市場はもちろん、ヘルスケア・医療・介護など
+    次世代市場における企業や生活者のユーザビリティを向上させる
+      サービス、ソフトウェアを開発しています。
+    #{1 + 1}
+EOS
+puts str
 
-## 3
-$val = 0
+50(×)
+x = 1
+y = 1.0
 
-class Count
-	def self.up
-		$val = $val + 1
-		$val == 3 ? true : false
-	end
+print x == y
+print x.eql? y
+print x.equal? y
+print x.equal?(1)
+
+4/25 88======================================
+
+5(×)
+begin
+	raise StandardError.new
+rescue => e
+	puts e.class
 end
 
-[*1..10].any? do
-	Count.up
-end
+13(○)
+a, = (1..5).partition(&:odd?)
+p a
 
-p $val
+20(○)
+str = "Liberty Fish   \r\n"
+str.strip!
+p str
 
-## 4
-module M
-  CONST = "Hello, world"
-
-  class C
-    def awesome_method
-      CONST
-    end
+25(○)
+def hoge
+  x = 0
+  1.step(5,1) do |i|
+    x += 1
   end
+  puts x
+end
+hoge
+
+32(×)
+h = {a: 100, b: 100}
+puts h.invert
+
+37(×)
+hash = {a: 100, b: 200}
+
+def splat_hash(a, b)
+  p a
+  p b
 end
 
-p M::C.new.awesome_method
+splat_hash(*hash)
 
-class C
+39c
+puts "80"
+puts 0xFF
+puts 7.to_s(3)
+p String.method_defined?(:binary)
+puts "7".binary
+
+41(○)
+arr = %|apple banana orange|
+arr.each do |i|
+  puts i
 end
 
-module M
-  CONST = "Hello, world"
+45(×)
+a = "Ruby"
+b = " on Rails"
+a.concat b
+a.reverse
+p a.index("R", 1)
 
-  C.class_eval do
-    def awesome_method
-      CONST
-    end
-  end
-end
+49(×)
+str = <<EOS
+よりニッチに。よりユニークに。
+  IT市場はもちろん、ヘルスケア・医療・介護など
+    次世代市場における企業や生活者のユーザビリティを向上させる
+      サービス、ソフトウェアを開発しています。
+    #{1 + 1}
+EOS
+puts str
 
-p C.new.awesome_method
 
-class C
-  CONST = "Hello, world"
-end
 
-module M
-  C.class_eval(<<-CODE)
-    def awesome_method
-      CONST
-    end
-  CODE
-end
 
-p C.new.awesome_method
 
-class C
-  CONST = "Hello, world"
-end
 
-module M
-  C.class_eval do
-    def awesome_method
-      CONST
-    end
-  end
-end
 
-p C.new.awesome_method
-
-## 5
-while not DATA.eof?
-	lines = DATA.readlines
-	lines.map(&:chomp!)
-	lines.reverse
-	p lines
-end
-
-## 6
-class C
-  class << C
-    def hoge
-      'Hi'
-    end
-  end
-
-  def hoge
-    'Goodbye'
-  end
-end
-
-p C.new.hoge
-
-p "Hello%d" % 5
 
 
 
