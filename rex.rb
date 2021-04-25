@@ -393,10 +393,22 @@ puts hoge.class
 	puts i
 end
 
+(1..10).each.
+reverse_each.
+each do |i|
+  puts i
+end
+
 (1..10).each \
 .reverse_each \
 .each do |i|
 	puts i
+end
+
+(1..10).to_a.each.
+reverse_each.
+each do |i|
+  puts i
 end
 
 40(×)
@@ -425,7 +437,7 @@ print x.eql? y
 print x.equal? y
 print x.equal?(1)
 
-4/25 88======================================
+4/25 88 ======================================
 
 5(×)
 begin
@@ -497,15 +509,417 @@ str = <<EOS
 EOS
 puts str
 
+4/26 80 =================================-
 
+2(○)
+require 'Date'
+d = Date.new(2015, 1, 5)
+puts d.strftime("%x")
 
+5(×)
+require 'Date'
+p Date.today.to_s
+Date.today.strftime("%Y-%m-%d")
 
+13(×)
+p [1,2,3,4].map do |e| e * e end
+ => <Enumerator: [1, 2, 3, 4]:map>
 
+15(×)
+def foo(n)
+  n ** n
+end
 
+puts foo (2) * 2
 
+20(×)
+a = [1]
+a[5] = 10
+a.compact
+p a
 
+21(×)
+str = "Liberty Fish   \r\n"
+str.chop
+p str
 
+22(○)
+10.times{|d| print d == 3..d == 5 ? "T" : "F" }
 
+23(×)
+def hoge(n)
+  unless n != 3
+    "hello"
+  elsif n == 5
+    "world"
+  end
+end
+
+str = ''
+str.concat hoge(3)
+str.concat hoge(5)
+
+puts str
+
+unlessは条件が成立しない場合に中の処理が実行されます。
+elseを用いることはできますが、elsifを用いることはできません。
+
+28(×)
+p ({a: 100, b: 100}).invert
+入れ替えの結果キーが重複した場合は、後に定義された方が優先されます。
+
+34(○)
+p arr = ["apple", "banana", "orange"].reverse
+arr.each do |i|
+  puts i
+end
+
+39(×)
+def hoge
+  x = 0
+  (1...5).each do |i|
+    x += 1
+  end
+  x
+end
+puts hoge
+
+40(×)
+str = "Liberty Fish   \r\n"
+str.strip
+p str
+String#stripは破壊的メソッドではないので、内容は変更されません。
+
+4/25 94 ========================================================
+
+10(×)
+open('textfile.txt', 'r+') do |f|
+  data = f.read.upcase
+  f.rewind
+  f.puts data
+end
+
+33(×)
+(1..10).each
+.reverse_each
+.each do |i|
+	puts i
+end
+
+(1..10).each.
+reverse_each.
+each do |i|
+  puts i
+end
+
+(1..10).each \
+.reverse_each \
+.each do |i|
+	puts i
+end
+
+(1..10).to_a.each.
+reverse_each.
+each do |i|
+  puts i
+end
+
+45(×)
+a1 = [1,2,3]
+a2 = [4,2,3]
+
+p a1 | a2
+
+===========================================
+
+p (1..10).lazy.map{|num|
+  num * 2
+}.take(3).inject(0, &:+)
+
+class C
+  @val = 3
+  attr_accessor :val
+  class << self
+    @val = 10
+  end
+  def initialize
+    @val *= 2 if val
+  end
+end
+
+c = C.new
+c.val += 10
+
+p c.val
+
+module M
+  CONST = "Hello, world"
+
+  class C
+    def awesome_method
+      CONST
+    end
+  end
+end
+
+p M::C.new.awesome_method
+
+module M
+  CONST = "Hello, world"
+end
+
+class M::C
+  def awesome_method
+    CONST
+  end
+end
+
+p M::C.new.awesome_method
+
+class C
+end
+
+module M
+  CONST = "Hello, world"
+
+  C.class_eval do
+    def awesome_method
+      CONST
+    end
+  end
+end
+
+p C.new.awesome_method
+
+class C
+  CONST = "Hello, world"
+end
+
+module M
+  C.class_eval(<<-CODE)
+    def awesome_method
+      CONST
+    end
+  CODE
+end
+
+p C.new.awesome_method
+
+class C
+  CONST = "Hello, world"
+end
+
+module M
+  C.class_eval do
+    def awesome_method
+      CONST
+    end
+  end
+end
+
+p C.new.awesome_method
+
+module M
+  def class_m
+    "class_m"
+  end
+end
+
+class C
+  include M
+end
+
+p C.methods.include?
+
+class C
+  @val = 3
+  attr_accessor :val
+  class << self
+    @val = 10
+  end
+  def initialize
+    @val *= 2 if val
+  end
+end
+
+c = C.new
+c.val += 10
+
+p c.val
+
+module M
+  def class_m
+    "class_m"
+  end
+end
+
+class C
+  include M
+end
+
+p C.methods.include? :class_m
+
+begin
+  raise StandardError.new
+rescue => e
+  puts e.class
+end
+
+class C
+  def initialize
+    p self.class
+  end
+end
+
+class C2 < C
+end
+
+C2.new
+
+class C
+  def m1
+    200
+  end
+end
+
+module R
+  refine C do
+    def m1
+      100
+    end
+  end
+end
+
+using R
+
+c = C.new
+puts c.m1
+
+p (1..100).each.lazy.chunk(&:even?).first(5).force
+
+class C
+  class << C
+    def hoge
+      'Hi'
+    end
+  end
+
+  def hoge
+    'Goodbye'
+  end
+end
+
+p C.new.hoge
+
+class C
+  CONST = "Good, night"
+end
+
+module M
+  CONST = "Good, evening"
+end
+
+module M
+  class C
+    CONST = "Hello, world"
+  end
+end
+
+module M
+  class C
+    p CONST
+  end
+end
+
+class C
+  class << C
+    def hoge
+      'Hi'
+    end
+  end
+
+  def hoge
+    'Goodbye'
+  end
+end
+
+p C.new.hoge
+
+class S
+  @@val = 0
+  def initialize
+    @@val += 1
+  end
+end
+
+class C < S
+  class << C
+    @@val += 1
+  end
+
+  def initialize
+  end
+end
+
+C.new
+C.new
+S.new
+S.new
+
+p C.class_variable_get(:@@val)
+
+p (1..100).each.lazy.chunk(&:even?).take(5).force
+p (1..100).each.lazy.chunk(&:even?).first(5)
+
+local = 0
+
+p1 = Proc.new { |arg1, arg2|
+  arg1, arg2 = arg1.to_i, arg2.to_i
+  local += [arg1, arg2].max
+}
+
+p1.call("1", "2")
+p1.call("7", "5")
+p1.call("9")
+
+p local
+
+class C
+  def self.m1
+    200
+  end
+end
+
+module R
+  refine C.singleton_class do
+    def m1
+      100
+    end
+  end
+end
+
+using R
+
+puts C.m1
+
+20
+val = 1 + 1/2r
+puts val.class
+
+22
+def m1(*)
+  str = yield if block_given?
+  p "m1 #{str}"
+end
+
+def m2(*)
+  str = yield if block_given?
+  p "m2 #{str}"
+end
+
+m1 m2 do
+  "hello"
+end
 
 
 
