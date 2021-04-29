@@ -1,9 +1,11 @@
+4/13 56 ========================
+
 1(○)
 s = <<'EOF'
 Hello,
 Ruby
 EOF
-# 'EOF'
+'EOF'
 
 p s
 
@@ -336,7 +338,7 @@ end
 
 p $val
 
-========================================
+4/24 72 ========================================
 
 5(×)
 arr = (1..30).to_a
@@ -437,7 +439,7 @@ print x.eql? y
 print x.equal? y
 print x.equal?(1)
 
-4/25 88 ======================================
+4/24 88 ======================================
 
 5(×)
 begin
@@ -509,7 +511,7 @@ str = <<EOS
 EOS
 puts str
 
-4/26 80 =================================-
+4/25 80 =================================-
 
 2(○)
 require 'Date'
@@ -630,11 +632,12 @@ a2 = [4,2,3]
 
 p a1 | a2
 
-===========================================
+# 学習マラソン ===========================================
 
 p (1..10).lazy.map{|num|
   num * 2
 }.take(3).inject(0, &:+)
+
 
 class C
   @val = 3
@@ -651,6 +654,7 @@ c = C.new
 c.val += 10
 
 p c.val
+
 
 module M
   CONST = "Hello, world"
@@ -920,6 +924,66 @@ end
 m1 m2 do
   "hello"
 end
+
+module M1
+  class C1
+    CONST = "001"
+  end
+
+  class C2 < C1
+    CONST = "010"
+
+    module M2
+      CONST = "011"
+
+      class Ca
+        CONST = "100"
+      end
+
+      class Cb < Ca
+        p CONST
+      end
+    end
+  end
+end
+
+module M
+  def method_missing(id, *args)
+    puts "M#method_missing"
+  end
+end
+class A
+  include M
+  def method_missing(id, *args)
+    puts "A#method_missing"
+  end
+end
+class B < A
+  class << self
+    def method_missing(id, *args)
+      puts "B.method_missing"
+    end
+  end
+end
+
+B.new.dummy_method
+
+# 4/29 ==============================
+
+p "a b c d".split()
+puts "****************"
+p "a\nb\nc\nd".split(//)
+puts "****************"
+p "a\tb\tc\td".split()
+puts "****************"
+p "a b c d".split(//)
+puts "****************"
+p "a\tb\tc\td".split(//)
+
+
+
+
+
 
 
 
